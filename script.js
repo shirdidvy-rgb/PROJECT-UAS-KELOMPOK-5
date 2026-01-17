@@ -33,3 +33,10 @@ function createCard(c) {
         </div>
     `;
 }
+
+function renderHomeCampaigns() {
+    const urgentDisplay = document.getElementById('urgentCampaigns');
+    // Ambil 3 data pertama
+    const urgentData = campaigns.slice(0, 3);
+    urgentDisplay.innerHTML = urgentData.map(c => createCard(c)).join('');
+}
