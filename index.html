@@ -17,6 +17,27 @@
             <li><a href="#relawan">Relawan</a></li>
             <li><a href="#tentang">Tentang Kami</a></li>
         </ul>
-    </nav>   
+    </nav>  
+    
+     <section id="kampanye" class="container section-padding">
+        <h2 class="section-title">Semua Kampanye Amal</h2>
+            <div class="filter-buttons">
+                <button class="btn-filter active" onclick="filterCampaign('semua')">
+                    <i class="fas fa-th-large"></i> Semua
+                </button>
+                <button class="btn-filter" onclick="filterCampaign('bencana')">
+                    <i class="fas fa-house-damage"></i> Bencana
+                </button>
+                <button class="btn-filter" onclick="filterCampaign('pendidikan')">
+                    <i class="fas fa-graduation-cap"></i> Pendidikan
+                </button>
+                <button class="btn-filter" onclick="filterCampaign('kesehatan')">
+                    <i class="fas fa-hospital-user"></i> Kesehatan
+                </button>
+            </div>
+
+        <div class="campaign-grid" id="allCampaigns">
+            </div>
+    </section> 
 </body>
 </html>
