@@ -56,3 +56,28 @@ function filterCampaign(cat) {
         event.target.classList.add('active');
     }
 }
+
+function openDetail(id) {
+    const c = campaigns.find(item => item.id === id);
+    const modal = document.getElementById('modalDetail');
+    const content = document.getElementById('modalData');
+    
+    content.innerHTML = `
+        <div class="detail-header">
+            <h2 style="color: var(--dark); margin-bottom: 15px;">${c.title}</h2>
+        </div>
+        <div class="detail-story" style="max-height: 300px; overflow-y: auto; text-align: left; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 10px;">Cerita Penggalangan Dana</h4>
+            <p style="color: #555; font-size: 0.95rem; line-height: 1.6;">
+                ${c.description} </p>
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+            <div class="detail-info-row"><b>Kabar Terbaru</b> <span style="float:right">></span></div>
+            <div class="detail-info-row"><b>Pencairan Dana</b> <span style="float:right">></span></div>
+        </div>
+        <div class="detail-footer" style="display: flex; gap: 10px;">
+            <button class="btn-filter" style="flex: 1;">Bagikan</button>
+            <button class="btn-primary" style="flex: 2;" onclick="showDonationForm(${c.id})">Donasi Sekarang</button>
+        </div>
+    `;
+    modal.style.display = 'flex';
+}
