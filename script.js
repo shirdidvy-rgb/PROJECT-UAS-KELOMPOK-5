@@ -8,6 +8,7 @@ const campaigns = [
     { id: 4, category: 'bencana', title: 'Bantuan Tanah Longsor', img: 'image/tanahLongsor.jpeg', target: 40000000, current: 15000000,
         description: 'Bagi warga yang tertimbun material atau kehilangan tempat tinggal akibat pergerakan tanah, bantuan alat berat dan logistik darurat bukan sekadar dukungan fisik. Itu adalah simbol harapan untuk bangkit kembali. Melalui program Bantuan Bencana Tanah Longsor, kami mengajak Anda untuk menjadi bagian dari proses evakuasi dan pemulihan kehidupan mereka.'}
 ];
+
 function createCard(c) {
     const percent = Math.min((c.current / c.target) * 100, 100);
     const categoryIcons = {
