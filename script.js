@@ -40,3 +40,19 @@ function renderHomeCampaigns() {
     const urgentData = campaigns.slice(0, 3);
     urgentDisplay.innerHTML = urgentData.map(c => createCard(c)).join('');
 }
+
+
+function renderAllCampaigns(filter = 'semua') {
+    const display = document.getElementById('allCampaigns');
+    const filtered = filter === 'semua' ? campaigns : campaigns.filter(c => c.category === filter);
+    display.innerHTML = filtered.map(c => createCard(c)).join('');
+}
+
+function filterCampaign(cat) {
+    renderAllCampaigns(cat);
+    document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+   
+    if(event.target.classList.contains('btn-filter')) {
+        event.target.classList.add('active');
+    }
+}
