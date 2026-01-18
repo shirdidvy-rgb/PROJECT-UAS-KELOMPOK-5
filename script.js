@@ -111,3 +111,14 @@ function saveDonation(e, title) {
     alert(`Terima kasih! Donasi untuk "${title}" sebesar Rp ${parseInt(amount).toLocaleString()} berhasil.`);
     closeModal();
 }
+
+document.getElementById('formRelawan').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert("Pendaftaran Relawan Berhasil! Tim kami akan menghubungi Anda melalui email.");
+    e.target.reset();
+});
+
+window.onload = () => {
+    renderHomeCampaigns();
+    renderAllCampaigns();
+};
