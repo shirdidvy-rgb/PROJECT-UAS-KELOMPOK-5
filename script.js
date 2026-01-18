@@ -120,4 +120,5 @@ document.getElementById('formRelawan').addEventListener('submit', (e) => {
 
 window.onload = () => {
     renderHomeCampaigns();
+    renderAllCampaigns();
 };
