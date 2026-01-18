@@ -81,3 +81,24 @@ function openDetail(id) {
     `;
     modal.style.display = 'flex';
 }
+
+function showDonationForm(id) {
+    const c = campaigns.find(item => item.id === id);
+    const content = document.getElementById('modalData');
+    
+    content.innerHTML = `
+        <h3>Formulir Donasi</h3>
+        <p style="margin-bottom: 15px;">Kampanye: <b>${c.title}</b></p>
+        <form id="formDonasi" onsubmit="saveDonation(event, '${c.title}')">
+            <input type="text" id="donorName" placeholder="Nama Lengkap" required>
+            <input type="number" id="donorAmount" placeholder="Nominal Donasi (Rp)" required min="10000">
+            <select id="payMethod">
+                <option value="Gopay">Gopay</option>
+                <option value="Transfer Bank">Transfer Bank</option>
+                <option value="OVO">OVO</option>
+            </select>
+            <button type="submit" class="btn-primary">Konfirmasi Pembayaran</button>
+            <button type="button" class="btn-filter" style="margin-top: 10px; border:none;" onclick="openDetail(${id})">Kembali ke Detail</button>
+        </form>
+    `;
+}
