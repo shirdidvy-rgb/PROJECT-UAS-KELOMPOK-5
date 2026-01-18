@@ -102,3 +102,12 @@ function showDonationForm(id) {
         </form>
     `;
 }
+
+function closeModal() { document.getElementById('modalDetail').style.display = 'none'; }
+
+function saveDonation(e, title) {
+    e.preventDefault();
+    const amount = document.getElementById('donorAmount').value;
+    alert(`Terima kasih! Donasi untuk "${title}" sebesar Rp ${parseInt(amount).toLocaleString()} berhasil.`);
+    closeModal();
+}
