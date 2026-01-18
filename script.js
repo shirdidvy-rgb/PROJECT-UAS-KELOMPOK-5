@@ -41,6 +41,7 @@ function renderHomeCampaigns() {
     urgentDisplay.innerHTML = urgentData.map(c => createCard(c)).join('');
 }
 
+
 function renderAllCampaigns(filter = 'semua') {
     const display = document.getElementById('allCampaigns');
     const filtered = filter === 'semua' ? campaigns : campaigns.filter(c => c.category === filter);
