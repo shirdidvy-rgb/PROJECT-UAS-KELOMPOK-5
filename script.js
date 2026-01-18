@@ -117,3 +117,7 @@ document.getElementById('formRelawan').addEventListener('submit', (e) => {
     alert("Pendaftaran Relawan Berhasil! Tim kami akan menghubungi Anda melalui email.");
     e.target.reset();
 });
+
+window.onload = () => {
+    renderHomeCampaigns();
+};
