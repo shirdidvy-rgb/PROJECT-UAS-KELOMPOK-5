@@ -40,3 +40,83 @@ function renderHomeCampaigns() {
     const urgentData = campaigns.slice(0, 3);
     urgentDisplay.innerHTML = urgentData.map(c => createCard(c)).join('');
 }
+
+function renderAllCampaigns(filter = 'semua') {
+    const display = document.getElementById('allCampaigns');
+    const filtered = filter === 'semua' ? campaigns : campaigns.filter(c => c.category === filter);
+    display.innerHTML = filtered.map(c => createCard(c)).join('');
+}
+
+function filterCampaign(cat) {
+    renderAllCampaigns(cat);
+    document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+   
+    if(event.target.classList.contains('btn-filter')) {
+        event.target.classList.add('active');
+    }
+}
+
+function openDetail(id) {
+    const c = campaigns.find(item => item.id === id);
+    const modal = document.getElementById('modalDetail');
+    const content = document.getElementById('modalData');
+    
+    content.innerHTML = `
+        <div class="detail-header">
+            <h2 style="color: var(--dark); margin-bottom: 15px;">${c.title}</h2>
+        </div>
+        <div class="detail-story" style="max-height: 300px; overflow-y: auto; text-align: left; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 10px;">Cerita Penggalangan Dana</h4>
+            <p style="color: #555; font-size: 0.95rem; line-height: 1.6;">
+                ${c.description} </p>
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+            <div class="detail-info-row"><b>Kabar Terbaru</b> <span style="float:right">></span></div>
+            <div class="detail-info-row"><b>Pencairan Dana</b> <span style="float:right">></span></div>
+        </div>
+        <div class="detail-footer" style="display: flex; gap: 10px;">
+            <button class="btn-filter" style="flex: 1;">Bagikan</button>
+            <button class="btn-primary" style="flex: 2;" onclick="showDonationForm(${c.id})">Donasi Sekarang</button>
+        </div>
+    `;
+    modal.style.display = 'flex';
+}
+
+function showDonationForm(id) {
+    const c = campaigns.find(item => item.id === id);
+    const content = document.getElementById('modalData');
+    
+    content.innerHTML = `
+        <h3>Formulir Donasi</h3>
+        <p style="margin-bottom: 15px;">Kampanye: <b>${c.title}</b></p>
+        <form id="formDonasi" onsubmit="saveDonation(event, '${c.title}')">
+            <input type="text" id="donorName" placeholder="Nama Lengkap" required>
+            <input type="number" id="donorAmount" placeholder="Nominal Donasi (Rp)" required min="10000">
+            <select id="payMethod">
+                <option value="Gopay">Gopay</option>
+                <option value="Transfer Bank">Transfer Bank</option>
+                <option value="OVO">OVO</option>
+            </select>
+            <button type="submit" class="btn-primary">Konfirmasi Pembayaran</button>
+            <button type="button" class="btn-filter" style="margin-top: 10px; border:none;" onclick="openDetail(${id})">Kembali ke Detail</button>
+        </form>
+    `;
+}
+
+function closeModal() { document.getElementById('modalDetail').style.display = 'none'; }
+
+function saveDonation(e, title) {
+    e.preventDefault();
+    const amount = document.getElementById('donorAmount').value;
+    alert(`Terima kasih! Donasi untuk "${title}" sebesar Rp ${parseInt(amount).toLocaleString()} berhasil.`);
+    closeModal();
+}
+
+document.getElementById('formRelawan').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert("Pendaftaran Relawan Berhasil! Tim kami akan menghubungi Anda melalui email.");
+    e.target.reset();
+});
+
+window.onload = () => {
+    renderHomeCampaigns();
+};
